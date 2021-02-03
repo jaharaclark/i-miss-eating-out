@@ -73,3 +73,5 @@ class RestaurantTest < Minitest::Test
     assert_equal "Il Posto will be closing at 11:00PM", @restaurant2.announce_closing_time(7)
   end
 end
+
+
