@@ -6,6 +6,7 @@ class RestaurantTest < Minitest::Test
   def setup
     @restaurant1 = Restaurant.new('10:00', 'Fuel Cafe')
     @restaurant2 = Restaurant.new('16:00', 'Il Posto')
+    @restaurant3 = Restaurant.new('6:00', 'Fuel Cafe')
   end
 
   # Iteration 1 Tests:
@@ -64,5 +65,11 @@ class RestaurantTest < Minitest::Test
     @restaurant2.add_dish('Ravioli')
 
     assert_equal ["BURRATA", "PIZZETTA", "RAVIOLI"], @restaurant2.menu_dish_names
+  end
+
+  #Iteration 4 Tests:
+  def test_it_can_announce_closing_time
+    assert_equal "Fuel Cafe will be closing at 11:00AM", @restaurant3.announce_closing_time(5)
+    assert_equal "Il Posto will be closing at 11:00PM", @restaurant2.announce_closing_time(7)
   end
 end

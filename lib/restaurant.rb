@@ -4,9 +4,6 @@ class Restaurant
         @dishes = []
         @opening_time = opening_time
         @name = name
-        
-        
-
     end
 
     def closing_time(hours)
@@ -28,5 +25,17 @@ class Restaurant
            capitalized_dishes << dish.upcase
         end
         capitalized_dishes
+    end
+
+    def announce_closing_time(time)
+        opening_time_integer = @opening_time.to_i
+        opening_time_24_hour = opening_time_integer + time
+        if opening_time_24_hour > 12
+            new_time = opening_time_24_hour - 12
+            writable_time = new_time.to_s + ":00PM"
+        else
+            writable_time = opening_time_24_hour.to_s + ":00AM"
+        end
+        return "#{@name} will be closing at #{writable_time}"   
     end
 end
