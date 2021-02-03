@@ -39,3 +39,4 @@ class Restaurant
         return "#{@name} will be closing at #{writable_time}"   
     end
 end
+
