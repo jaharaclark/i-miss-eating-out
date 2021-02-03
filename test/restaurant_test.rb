@@ -3,6 +3,11 @@ require 'minitest/pride'
 require './lib/restaurant'
 
 class RestaurantTest < Minitest::Test
+  def setup
+    @restaurant1 = Restaurant.new('10:00', 'Fuel Cafe')
+    @restaurant2 = Restaurant.new('16:00', 'Il Posto')
+  end
+
   # Iteration 1 Tests:
   def test_it_exists
     restaurant = Restaurant.new('10:00', 'Fuel Cafe')
@@ -11,21 +16,18 @@ class RestaurantTest < Minitest::Test
   end
 
   def test_it_has_opening_time
-    skip
     restaurant = Restaurant.new('10:00', 'Fuel Cafe')
 
     assert_equal '10:00', restaurant.opening_time
   end
 
   def test_it_has_name
-    skip
     restaurant = Restaurant.new('10:00', 'Fuel Cafe')
 
     assert_equal 'Fuel Cafe', restaurant.name
   end
 
   def test_it_has_dishes
-    skip
     restaurant = Restaurant.new('10:00', 'Fuel Cafe')
 
     assert_equal [], restaurant.dishes
@@ -33,7 +35,6 @@ class RestaurantTest < Minitest::Test
 
   #Iteration 2 Tests:
   def test_it_has_closing_time
-    skip
     restaurant1 = Restaurant.new('10:00', 'Fuel Cafe')
     restaurant2 = Restaurant.new('16:00', 'Il Poggio')
 
@@ -42,7 +43,6 @@ class RestaurantTest < Minitest::Test
   end
 
   def test_it_can_add_dishes
-    skip
     restaurant = Restaurant.new('16:00', 'Il Poggio')
 
     restaurant.add_dish('Burrata')
@@ -50,5 +50,19 @@ class RestaurantTest < Minitest::Test
     restaurant.add_dish('Ravioli')
 
     assert_equal ['Burrata', 'Pizzetta', 'Ravioli'], restaurant.dishes
+  end
+
+  #Iteration 3 Tests:
+  def test_it_is_open_for_lunch?
+    assert_equal true, @restaurant1.open_for_lunch?
+    assert_equal false, @restaurant2.open_for_lunch?
+  end
+
+  def test_the_menu_dish_names
+    @restaurant2.add_dish('Burrata')
+    @restaurant2.add_dish('Pizzetta')
+    @restaurant2.add_dish('Ravioli')
+
+    assert_equal ["BURRATA", "PIZZETTA", "RAVIOLI"], @restaurant2.menu_dish_names
   end
 end
